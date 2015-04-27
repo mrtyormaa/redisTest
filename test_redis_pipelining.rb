@@ -32,11 +32,14 @@ def just_one_ping
 end
 
 bench('without pipelining') {
+  puts 'Pinging Server 100 times without PipeLining'
   without_pipelining
 }
 bench('with pipelining') {
+  puts 'Pinging Server 100 times with PipeLining'
   with_pipelining
 }
 bench('just_one_ping') {
+  puts 'Pinging Server just once'
   with_pipelining
 }
