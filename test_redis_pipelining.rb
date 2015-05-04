@@ -11,14 +11,14 @@ def bench(descr)
 end
 
 def without_pipelining
-  r = Redis.new(:host => '178.62.200.133')
+  r = connect_to_server
   100.times {
     r.ping
   }
 end
 
 def with_pipelining
-  r = Redis.new(:host => '178.62.200.133')
+  r = connect_to_server
   r.pipelined {
     100.times {
       r.ping
@@ -27,8 +27,12 @@ def with_pipelining
 end
 
 def just_one_ping
-  r = Redis.new(:host => '178.62.200.133')
+  r = connect_to_server
   r.ping
+end
+
+def connect_to_server
+  Redis.new(:host => '178.62.200.133')
 end
 
 bench('without pipelining') {
