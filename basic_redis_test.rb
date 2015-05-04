@@ -9,18 +9,22 @@ def bench(descr)
 end
 
 def ping_server
-  r = Redis.new(:host => '178.62.200.133')
+  r = connect_to_server
   puts r.ping
 end
 
 def get_hash_value_for_key_hello
-  r = Redis.new(:host => '178.62.200.133')
+  r = connect_to_server
   puts r.get('hello')
 end
 
 def get_all_keys
-  r = Redis.new(:host => '178.62.200.133')
+  r = connect_to_server
   puts "#{r.keys('*').length} keys retrieved"
+end
+
+def connect_to_server
+  Redis.new(:host => '178.62.200.133')
 end
 
 bench('ping_server') {
